@@ -1,0 +1,13 @@
+- name: Hello Events
+  hosts: localhost
+  sources:
+    - ansible.eda.kafka:
+        host: telegraf-kafka
+        port: 29192
+        topic: telegraf
+  rules:
+    - name: Check cpu idle
+      condition: event.body.tags.environment == 'dev' and event.body.tags.host == 'telegraf' and event.body.name == 'cpu' and event.body.tags.cpu == 'cpu-total'
+      action:
+        debug:
+          msg: "{{ event.body.fields.usage_idle }}"
