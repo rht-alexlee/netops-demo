@@ -7,7 +7,7 @@
         topic: telegraf
   rules:
      - name: BGP change detected
-       condition: event.fields.session_state == "IDLE"
+       condition: event.body.tags.environment == 'dev'
        action:
         debug:
           msg: "{{ event.body }}"
