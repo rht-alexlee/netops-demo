@@ -11,3 +11,4 @@
       action:
         debug:
           msg: "{{ event.body.fields.usage_idle }}"
+
