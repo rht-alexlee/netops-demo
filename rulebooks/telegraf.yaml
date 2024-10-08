@@ -10,5 +10,5 @@
        condition: event.body.tags.environment == 'dev'
        action:
         debug:
-          msg: "{{ event.body }}"
+          msg: "{{ event.body.fields }}"
 
