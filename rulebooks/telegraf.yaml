@@ -6,8 +6,9 @@
         port: 29192
         topic: telegraf
   rules:
-    - name: Check cpu idle
-      action:
+     - name: BGP change detected
+       condition: event.fields.session_state == "IDLE"
+       action:
         debug:
           msg: "{{ event.body }}"
 
