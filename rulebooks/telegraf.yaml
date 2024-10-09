@@ -6,9 +6,8 @@
         port: 29192
         topic: telegraf
   rules:
-     - name: BGP change detected
-       condition: event.body.tags.environment == 'dev'
-       action:
-        debug:
-          msg: "{{ event.body.fields }}"
-
+    - name: BGP change detected
+      condition: event.body.tags.environment == 'dev'
+      action:
+        run_playbook:
+          name: troubleshoot_bgp.yml
