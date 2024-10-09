@@ -9,5 +9,5 @@
     - name: BGP change detected
       condition: event.body.fields.session_state == "IDLE"
       action:
-        run_playbook:
-          name: troubleshoot_bgp.yml
+        run_job_template:
+          name: troubleshoot_bgp
