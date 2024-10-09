@@ -7,7 +7,7 @@
         topic: telegraf
   rules:
     - name: BGP change detected
-      condition: event.body.tags.environment == 'dev'
+      condition: event.body.fields.session_state == "IDLE"
       action:
         run_playbook:
           name: troubleshoot_bgp.yml
