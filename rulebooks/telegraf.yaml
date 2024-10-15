@@ -12,3 +12,6 @@
         run_job_template:
           name: troubleshoot_bgp
           organization: Default
+          job_args:
+            extra_vars:
+              ansible_eda: "{{ event }}"
