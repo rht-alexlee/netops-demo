@@ -11,20 +11,30 @@
 
     - name: BGP Check
       arista.eos.eos_command:
-       commands: show ip bgp summary vrf all
+        commands: show ip bgp summary vrf all
       register: bgp_summary
 
     - name: Check reachability of switches
       arista.eos.eos_command:
-       commands: "{{ switches }}"
+        commands: "{{ switches }}"
       register: result
 
     - set_fact:
-       cacheable: true
-       bgp_view: "{{ bgp_summary }}"
-       bgp_ping: "{{ result }}"
-       status: done
-       bgp_state: "{{ ansible_eda.event.body.fields.session_state }}"
-       bgp_prob_neighbor: "{{ ansible_eda.event.body.tags.neighbor_address }}"
-       bgp_timestamp: "{{ ansible_eda.event.body.timestamp }}"
-       bgp_error_type: "{{ ansible_eda.event.body.tags.identifier }}"
+      cacheable: true
+      bgp_view: "{{ bgp_summary }}"
+      bgp_ping: "{{ result }}"
+      status: done
+      bgp_state: "{{ ansible_eda.event.body.fields.session_state }}"
+      bgp_prob_neighbor: "{{ ansible_eda.event.body.tags.neighbor_address }}"
+      bgp_timestamp: "{{ ansible_eda.event.body.timestamp }}"
+      bgp_error_type: "{{ ansible_eda.event.body.tags.identifier }}"
+
+    - debug:
+      msg: |-
+        bgp_view: "{{ bgp_summary }}"
+        bgp_ping: "{{ result }}"
+        status: done
+        bgp_state: "{{ ansible_eda.event.body.fields.session_state }}"
+        bgp_prob_neighbor: "{{ ansible_eda.event.body.tags.neighbor_address }}"
+        bgp_timestamp: "{{ ansible_eda.event.body.timestamp }}"
+        bgp_error_type: "{{ ansible_eda.event.body.tags.identifier }}"
