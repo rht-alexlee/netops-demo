@@ -1,6 +1,7 @@
 ---
 - name: Basic Troubleshooting BGP
-  hosts: veos1
+  hosts: localhost
+  connection: local
   gather_facts: false
   vars:
     switches:
